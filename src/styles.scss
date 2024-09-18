@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+thead{
+    background-color: aliceblue;
+    padding:5px;
+}
+
+thead>th{
+    padding:5px;
+}

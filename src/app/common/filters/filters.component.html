@@ -1,0 +1,21 @@
+<div>
+  <div class="filter-bar p-2 m-0">
+    <div>
+      <span class="filter-heading">Filter Menu</span>
+    </div>
+    <div class="d-flex gap-3">
+      <div class="search-bar">
+        <input type="text" value="{{ searchValue }}" placeholder="Search..." />
+        <button (click)="search()">Search</button>
+      </div>
+      <div class="filter-buttons">
+        <button *ngIf="selectedEmployees.length === 1" (click)="showEdit()">
+          Edit
+        </button>
+        <button (click)="create()">Create</button>
+        <button (click)="delete()">Delete</button>
+      </div>
+    </div>
+  </div>
+  <!-- <app-confirm-modal></app-confirm-modal> -->
+</div>

@@ -1,0 +1,5 @@
+
+<div>
+    <app-filters [selectedEmployees]="selectedEmployees"></app-filters>
+    <app-employee-table [employees]="employees" (employeeSelectionChanged)="onEmployeeSelectionChanged($event)"></app-employee-table>
+</div>
