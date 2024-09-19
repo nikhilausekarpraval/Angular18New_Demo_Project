@@ -30,6 +30,7 @@ export class CreateTaskFormComponent {
   ngOnChanges(changes: SimpleChanges) {
 
     if (changes['isEditForm'] && this.isEditForm) {
+        this.formOperation = this.task ? "Edit" : "Create";
         this.updatedTask = Object.assign({},this.task ? this.task : this.updatedTask);
         this.openModal(); 
 

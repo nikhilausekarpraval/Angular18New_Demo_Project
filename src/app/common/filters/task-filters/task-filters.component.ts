@@ -69,7 +69,6 @@ export class TaskFiltersComponent {
   create(){
      this.selectedTask = null;
      this.isEditForm = true;
-     console.log(this.selectedTasks)
   }
 
 }

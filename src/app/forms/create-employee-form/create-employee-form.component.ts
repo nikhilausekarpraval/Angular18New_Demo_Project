@@ -30,6 +30,7 @@ export class CreateEmployeeFormComponent {
   ngOnChanges(changes: SimpleChanges) {
 
     if (changes['isEditForm'] && this.isEditForm) {
+       this.formOperation = this.employee ? "Edit" : "Create";
         this.updatedEmployee = Object.assign({},this.employee ? this.employee : this.updatedEmployee);
         this.openModal(); 
 
