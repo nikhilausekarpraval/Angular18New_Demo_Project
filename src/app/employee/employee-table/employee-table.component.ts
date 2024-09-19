@@ -15,16 +15,25 @@ import { EMPLOYEE_TABLE_HEADERS } from '../../Constants/Constatns';
 export class EmployeeTableComponent {
 
   constructor(){
-    console.log(this.employees)
+
   }
 
   @Input() employees:IEmployee [] = [];
+  @Input() selectedEmployees :{ id: number, isChecked: boolean }[] = []
   @Output() employeeSelectionChanged = new EventEmitter<{ id: number, isChecked: boolean }>();
   EMPLOYEE_TABLE_HEADERS: any = EMPLOYEE_TABLE_HEADERS;
 
-  selectEmployee(id: number, event: any): void {
+  selectEmployee(newId: number | null, event: any): void {
     let isChecked = event.target.checked;
+    let id = newId ? newId : 0;
     this.employeeSelectionChanged.emit({ id, isChecked });// in parent not executing function 
+    
   }
+
+  isEmployeeChecked(employeeId: number|null): boolean {
+    const selectedEmployee = this.selectedEmployees.find(item => item.id === employeeId);
+    return selectedEmployee ? selectedEmployee.isChecked : false;
+  }
+  
 
 }

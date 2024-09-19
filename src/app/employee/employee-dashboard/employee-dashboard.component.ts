@@ -31,7 +31,12 @@ export class EmployeeDashboardComponent {
     } else if (event.isChecked) {
       this.selectedEmployees.push(event);
     }
-    
+    console.log("changed")
+  }
+
+  clearSelectedEmployees(){
+    this.selectedEmployees = []
+    console.log("clear selected called")
   }
 
    employees = [

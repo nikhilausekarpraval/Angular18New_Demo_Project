@@ -6,7 +6,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let employee of employees">
-                <td><input type="checkbox" (change)="selectEmployee(employee.id, $event)"></td><td>{{employee.id}}</td><td>{{employee.name}}</td><td>{{employee.position}}</td><td>{{employee.designation}}</td><td>{{employee.email}}</td><td>{{employee.mobileNo}}</td><td>{{employee.createdOnDt}}</td><td>{{employee.createdBy}}</td>
+                <td><input [id]="employee.id"  [checked]="isEmployeeChecked(employee.id)"  type="checkbox" (change)="selectEmployee(employee.id, $event)"></td><td>{{employee?.id}}</td><td>{{employee.name}}</td><td>{{employee.position}}</td><td>{{employee.designation}}</td><td>{{employee.email}}</td><td>{{employee.mobileNo}}</td><td>{{employee.createdOnDt}}</td><td>{{employee.createdBy}}</td>
             </tr>
         </tbody>
     </table>

@@ -13,9 +13,10 @@
           Edit
         </button>
         <button (click)="create()">Create</button>
-        <button (click)="delete()">Delete</button>
+        <button (click)="showDelete()">Delete</button>
       </div>
     </div>
   </div>
-  <!-- <app-confirm-modal></app-confirm-modal> -->
+    <app-confirm-popup (clearPopup)="clearPopup()" (delete)="delete()" [isShowDelete]="isShowDelete" [modalTemplate]="confirmDeleteTemplate"></app-confirm-popup>
+    <app-create-employee-form (clearForm)="clearForm()"  (save)="save()" [isEditForm]="isEditForm" [employee]="selectedEmployee"></app-create-employee-form>
 </div>

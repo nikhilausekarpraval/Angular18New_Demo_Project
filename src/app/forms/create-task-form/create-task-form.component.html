@@ -1,0 +1,144 @@
+<ng-template #taskEditForm>
+    <div class="px-4 py-2 modal-header d-flex justify-content-between">
+      <div class="building-form-header py-2 d-flex gap-4 align-items-center">
+        {{ formOperation }} Task
+        <!-- <h4 class='m-0'> {this.state.duplicateId && <div><span class='text-danger '>*Duplicate Source Code is not allowed</span></div>}</h4> -->
+      </div>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="cancel()">
+      </button>
+    </div>
+    <div class="modal-body p-0">
+      <div class="building-level-edit-form">
+        <form (ngSubmit)="handleFormSubmit($event)"
+          class="form-background-color"
+        >
+          <div class="px-5 py-4">
+            <div class="row m-0">
+              <div
+                class="my-2 col col-sm-6 m-0 gap-5  align-items-center justify-content-start"
+              >
+                <label
+                  htmlFor="SOURCE_CODE"
+                  class="form-label label-styles py-2 m-0"
+                  >Id<span class="text-danger font-14"
+                    >*</span
+                  ></label
+                >
+                <input type="text" [(ngModel)]="updatedTask.id" required [disabled]="true"
+                autoComplete="off" class="form-control form-input-style py-2"
+                maxLength={14} name="id"
+                 />
+              </div>
+              <div
+                class="my-2 col col-sm-6 m-0 gap-5  align-items-center justify-content-start"
+              >
+                <label
+                  htmlFor="name"
+                  class="form-label label-styles py-2 m-0"
+                  >Name</label
+                >
+                <input type="text" 
+                autoComplete="off" class="form-control form-input-style py-2"
+                maxLength={30} name="name" 
+                [(ngModel)]="updatedTask.name" id="name" />
+              </div>
+              <div
+                class="my-2 col col-sm-6 m-0 gap-5  align-items-center justify-content-start"
+              >
+                <label
+                  htmlFor="description"
+                  class="form-label label-styles py-2 m-0"
+                  >Description</label
+                >
+                <input type="text" 
+                autoComplete="off" class="form-control form-input-style py-2"
+                maxLength={150} name="description" 
+                [(ngModel)]="updatedTask.description" id="description" />
+              </div>
+              <div
+                class="my-2 col col-sm-6 m-0 gap-5  align-items-center justify-content-start"
+              >
+                <label
+                  htmlFor="Assigned"
+                  class="form-label label-styles py-2 m-0"
+                  >Assigned On Date</label
+                >
+                <input type="date"
+                autoComplete="off" class="form-control form-input-style py-2"
+                maxLength={100} name="Assigned"
+                [(ngModel)]="updatedTask.assignedOnDt" id="Assigned" />
+              </div>
+              <div
+                class="my-2 col col-sm-6 m-0 gap-5  align-items-center justify-content-start"
+              >
+                <label
+                  htmlFor="endDate"
+                  class="form-label label-styles py-2 m-0"
+                  >End Date</label
+                >
+                <input
+                  type="date"
+                  autoComplete="off"
+                  class="form-control form-input-style py-2"
+                  maxLength="{150}"
+                  name="endDate"
+                  [(ngModel)]="updatedTask.endDate"
+                  id="endDate"
+                />
+              </div>
+              <div
+                class="my-2 col col-sm-6 m-0 gap-5  align-items-center justify-content-start"
+              >
+                <label class="form-label label-styles py-2 m-0"
+                  >Created On Date</label
+                >
+  
+                <input
+                  type="date"
+                  autoComplete="off"
+                  class="form-control form-input-style py-2"
+                  maxLength="{150}"
+                  name="CreatedOnDt"
+                  [(ngModel)]="updatedTask.createdOnDt"
+                  id="CreatedOnDt"
+                />
+              </div>
+              <div
+                class="my-2 col col-sm-6 m-0 gap-5  align-items-center justify-content-start"
+              >
+                <label class="form-label label-styles py-2 m-0"
+                  >Created By</label
+                >
+  
+                <input
+                  type="text"
+                  autoComplete="off"
+                  class="form-control form-input-style py-2"
+                  maxLength="{150}"
+                  name="CreatedBy"
+                  [(ngModel)]="updatedTask.createdBy"
+                  id="CreatedBy"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer p-0 py-2">
+            <div class="d-flex justify-content-end gap-4 pe-5">
+              <Button
+                class="button-width py-2 btn btn-primary"
+                type="button"
+                (click)="cancel()"
+                >Cancel</Button
+              >
+              <Button
+                type="submit"
+                class="button-width btn btn-success  py-2"
+                >Save</Button
+              >
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ng-template>
+  

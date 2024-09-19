@@ -1,9 +1,253 @@
 /* You can add global styles to this file, and also import other style files */
-thead{
+thead {
     background-color: aliceblue;
-    padding:5px;
+    padding: 5px;
 }
 
-thead>th{
-    padding:5px;
+thead>th {
+    padding: 5px;
+}
+
+.apex-primary {
+    color: var(--apex-primary) !important;
+}
+
+.font-18{
+    font-size: 18px;
+}
+
+.apex-text-grey{
+    color: #717171;
+}
+
+.form-switch > input{
+cursor: pointer;
+}
+
+/* colors end */
+
+button:disabled{
+    background: var(--apex-disabledbtn);
+}
+
+.apex-bg-primary{
+    background: #002F93 !important;
+}
+
+.apex-bg-secondary{
+    background-color: #1D48A4 !important;
+}
+
+
+.apex-bg-grey {
+    background: #ebedf0;
+}
+
+.apex-bg-lgrey{
+    background: var(--apex-lightgrey);
+}
+
+.apex-table-container .apex-table-row:nth-child(even) {
+    background: #ebedf05c;
+} 
+
+.disabled-filed{
+    background-color: #e9ecef;
+}
+
+
+.bg-light-blue{
+    background: var(--apex-lightblue);
+}
+
+.building-form-header {
+    font-family: Helvetica;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.building-form-container {
+    .modal {
+        .la-snapshot-width {
+            width: 500px !important;
+        }
+    }
+}
+
+.building-level-edit-form {
+
+
+    .button-style {
+        background-color: var(--apex-primary);
+        font-size: 12px;
+        color: var(--apex-menu-bar-text-color)
+    }
+
+    .button-style:hover {
+        background-color: var(--apex-secondary);
+        color: var(--apex-menu-bar-text-color)
+    }
+
+    .cancel-button-style {
+        background-color: var(--apex-menu-bar-text-color);
+        font-size: 12px;
+        color: var(--apex-primary);
+        border-color: var(--apex-primary)
+    }
+
+    .cancel-button-style:hover {
+        background-color: white;
+        color: var(--apex-primary);
+        border-color: var(--apex-primary)
+    }
+
+    .label-styles {
+        font-family: Helvetica;
+        font-size: 0.9vw;
+        font-weight: 400;
+        line-height: 16px;
+        letter-spacing: 0em;
+    }
+
+    .form-input-style {
+        font-family: Helvetica;
+        color: var(--apex-form-input-color);
+        font-size: 0.9vw;
+        font-weight: 400;
+        line-height: 16px;
+        letter-spacing: 0em;
+    }
+
+    .form-row-container {
+        height: 62vh;
+        overflow-y: scroll;
+    }
+
+    .laT-form-row-container {
+        width: 50wh;
+        height: auto;
+    }
+
+    .form-check-input:checked {
+        background-color: var(--apex-primary) !important;
+        border-color: var(--apex-primary) !important;
+    }
+
+    .form-check-input {
+        font-size: 18px;
+    }
+
+    // need this style for forms
+    .react-datepicker-wrapper {
+        display: block;
+        padding: 0;
+        border: 0;
+    }
+
+    .form-input-filed {
+        font-size: 14px;
+        font-weight: 400;
+        font-family: Helvetica;
+    }
+
+    .form-check-label {
+        font-family: Helvetica;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 12px;
+        letter-spacing: 0em;
+        text-align: center;
+        padding-top: 7px;
+    }
+
+    .button-width {
+        width: 67px;
+
+    }
+
+    .date-input-padding {
+        padding-left: 15px;
+    }
+
+    .padding-start-oa-input {
+        padding-left: 28px;
+    }
+
+    .la-edit-form-input-field {
+        width: 134px;
+    }
+
+
+    .date-field-container {
+        position: relative;
+    }
+
+    .calender-icon-styles {
+        position: absolute;
+        top: 50%;
+        right: 4px;
+        transform: translate(-50%, -50%);
+    }
+
+}
+
+input#session-date {
+    //border: none;
+    box-sizing: border-box;
+    outline: 0;
+    padding: .75rem;
+    position: relative;
+    width: 100%;
+}
+
+input#session-date::-webkit-calendar-picker-indicator {
+    background: initial;
+    bottom: 0;
+    color: initial;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
+
+.access-form {
+    .permissions-lable {
+        font-size: 14px;
+        font-weight: bold;
+        font-family: helvetica;
+        line-height: 10px;
+        letter-spacing: 0em;
+        text-align: start
+    }
+
+    .permissions-toggles {
+        height: 75vh;
+        overflow: auto
+    }
+
+    .module-label {
+        font-size: 14px;
+        font-weight: 400;
+        font-family: helvetica;
+        line-height: 10px;
+        letter-spacing: 0em;
+        text-align: start;
+        width: 214px;
+    }
+}
+
+.user-form {
+    .select-container {
+        position: relative;
+    }
+
+    .simpleSelect-downarrow {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translate(-50%, -50%);
+    }
 }

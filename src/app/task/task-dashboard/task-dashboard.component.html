@@ -1,0 +1,4 @@
+<div>
+    <app-task-filters [tasks]="tasks" [selectedTasks]="selectedTasks" (clearSelectedTasks)="clearSelectedTasks()"></app-task-filters>
+    <app-task-table [tasks]="tasks" [selectedTasks]="selectedTasks" (taskSelectionChanged)="onTaskSelectionChanged($event)"></app-task-table>
+</div>
