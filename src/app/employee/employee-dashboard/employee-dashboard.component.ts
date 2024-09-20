@@ -2,16 +2,18 @@ import { Component } from '@angular/core';
 import { FiltersComponent } from '../../common/filters/filters.component';
 import { EmployeeTableComponent } from '../employee-table/employee-table.component';
 import { EmployeeService } from '../../service/employee.service';
-import { IEmployee, ITask } from '../../Interfaces/interfaces';
-import { employee } from '../../Constants/Constatns';
+import { IEmployee, ITask, ITaskDto } from '../../Interfaces/interfaces';
+import { employee, task } from '../../Constants/Constatns';
 import { AssignedTasksComponent } from '../assigned-tasks/assigned-tasks.component';
 import { TaskService } from '../../service/task.service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-employee-dashboard',
   standalone: true,
-  imports: [FiltersComponent,EmployeeTableComponent,AssignedTasksComponent],
+  imports: [FiltersComponent,EmployeeTableComponent,AssignedTasksComponent,FormsModule,CommonModule],
   templateUrl: './employee-dashboard.component.html',
   styleUrl: './employee-dashboard.component.scss'
 })
@@ -35,11 +37,13 @@ export class EmployeeDashboardComponent {
 
    selectedEmployees: { id: number, isChecked: boolean }[] = [];
    selectedEmployee:IEmployee = employee;
+   isTask:boolean = false;
 
   // Method to handle employee selection changes
   onEmployeeSelectionChanged(event: { id: number, isChecked: boolean }): void {
+    
     const index = this.selectedEmployees.findIndex(emp => emp.id === event.id);
-    this.getEmployee()
+
     if (index > -1) {
       if (event.isChecked) {
         this.selectedEmployees[index] = event;
@@ -49,13 +53,22 @@ export class EmployeeDashboardComponent {
     } else if (event.isChecked) {
       this.selectedEmployees.push(event);
     }
-    console.log("changed")
+    console.log("changed called is selected active")
+    this.getEmployee()
+
+    this.isSelectedEmployeeHaveTask();
   }
 
+
+
+
+
   getEmployee(){
+
     if(this.selectedEmployees.length == 1 ){
      const emp = this.employees.find((item)=>item.id == this.selectedEmployees[0].id && this.selectedEmployees[0].isChecked)
      this.selectedEmployee = emp as any;
+     console.log(this.selectedEmployee,"selected emp hsdf")
     }else {
       this.selectedEmployee = null as any;
     }
@@ -67,10 +80,27 @@ export class EmployeeDashboardComponent {
     this.getEmployees();
   }
 
-  savedTask(updatedTask: ITask) {
-    this.taskService.updateTask(this.selectedEmployee.tasks[0].id as any,this.selectedEmployee.tasks[0])
-    console.log('Received saved task:', updatedTask);
-    // Handle the updated task, e.g., send it to the server
+  savedTask(updatedTask: ITaskDto) {
+    let newTask = { 
+      ...updatedTask as any, 
+      employeeId: this.selectedEmployee.id // Assign employeeId from the first employee
+    } as any;
+    this.taskService.updateTask(newTask.id as any,newTask)
+    console.log(updatedTask)
+  }
+
+  isSelectedEmployeeHaveTask(){
+    let status = false;
+    console.log(this.selectedEmployee,this.selectedEmployees)
+    if(this.selectedEmployees.filter((item)=> item.isChecked).length > 0){
+      //console.log(this.selectedEmployee.tasks !== null,"have or not");
+      if(this.selectedEmployee?.tasks){
+        status = this.selectedEmployee?.tasks.length > 0;
+      }
+      
+    }
+    
+    this.isTask = status;
   }
 
   //  this.employees = [

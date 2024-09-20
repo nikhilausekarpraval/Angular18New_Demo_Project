@@ -67,9 +67,16 @@ export class CreateTaskFormComponent {
       this.clearForm.emit();
   }
 
+  onEmployeeSelect(value:any){
+    this.selectedEmployeeId = value;
+  }
+
   handleFormSubmit(event:any){
+      console.log(this.updatedTask);
+      let { employee, ...rest } = this.updatedTask  as any; // Destructure to exclude the 'employees' field
+
       let newTask = { 
-        ...this.updatedTask, 
+        ...rest, // Spread the remaining properties, excluding 'employees'
         employeeId: this.selectedEmployeeId // Assign employeeId from the first employee
       } as any;
       if(this.formOperation =="Edit"){

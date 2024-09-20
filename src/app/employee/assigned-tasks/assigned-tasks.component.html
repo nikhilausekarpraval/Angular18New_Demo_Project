@@ -1,13 +1,13 @@
 <div class="task-dashboard">
-    <h2>Task Dashboard</h2>
+    <h5>Task Dashboard</h5>
     <div class="task-card">
         <div class="task-detail">
             <label class="label">Task ID:</label>
-            <input type="text" [(ngModel)]="currentTask.id" class="value" readonly />
+            <input type="text" [(ngModel)]="currentTask.id" class="value" readonly disabled />
         </div>
         <div class="task-detail">
             <label class="label">Name:</label>
-            <input type="text" [(ngModel)]="currentTask.name" class="value" />
+            <input type="text" [(ngModel)]="currentTask.name" class="value" readonly disabled />
         </div>
         <div class="task-detail">
             <label class="label">Status:</label>
@@ -19,20 +19,23 @@
         </div>
         <div class="task-detail">
             <label class="label">Assigned On:</label>
-            <input type="date" [(ngModel)]="currentTask.assignedOnDt" class="value" />
+            <input type="date" [(ngModel)]="currentTask.assignedOnDt" class="value" readonly  disabled/>
         </div>
         <div class="task-detail">
             <label class="label">End Date:</label>
-            <input type="date" [(ngModel)]="currentTask.endDate" class="value" />
+            <input type="date" [(ngModel)]="currentTask.endDate" class="value"  readonly disabled/>
         </div>
         <div class="task-detail">
-            <label class="label">Created On:</label>
-            <input type="text" [(ngModel)]="currentTask.createdOnDt" class="value" readonly />
+            <label class="label">Created On:</label> 
+            <input type="text" [(ngModel)]="currentTask.createdOnDt" class="value" readonly  disabled/>
         </div>
         <div class="task-detail">
             <label class="label">Created By:</label>
-            <input type="text" [(ngModel)]="currentTask.createdBy" class="value" readonly />
+            <input type="text" [(ngModel)]="currentTask.createdBy" class="value" readonly   disabled/>
         </div>
     </div>
-    <button (click)="saveTask()" class="btn btn-primary">Save</button>
+    <div class="d-flex justify-content-end pe-4 pt-3">
+        <button (click)="saveTask()" class="btn btn-primary">Save</button>
+    </div>
+    
 </div>

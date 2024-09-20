@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
-import { ITask } from '../../Interfaces/interfaces';
-import { task } from '../../Constants/Constatns';
+import { IEmployee, ITask, ITaskDto } from '../../Interfaces/interfaces';
+import { employee, task } from '../../Constants/Constatns';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -16,14 +16,14 @@ export class AssignedTasksComponent {
 
   }
 
-  @Input() task:ITask = task
-  @Output() savedTask = new EventEmitter<ITask>();
-  currentTask : ITask = task;
+  @Input() task:IEmployee = employee
+  @Output() savedTask = new EventEmitter<ITaskDto>();
+  currentTask : ITaskDto = {...task,employeeId:0};
 
   ngOnChanges(changes: SimpleChanges) {
 
     if (changes['task'] && this.task) {
-      this.currentTask = {...this.task}
+      this.currentTask = {...this.task.tasks[0]}
     }
   }
 
