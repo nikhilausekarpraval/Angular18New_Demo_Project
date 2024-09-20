@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ConfirmPopupComponent } from '../confirm-popup/confirm-popup.component';
 import { IEmployee, ITask } from '../../Interfaces/interfaces';
 import { CreateEmployeeFormComponent } from '../../forms/create-employee-form/create-employee-form.component';
+import { EmployeeService } from '../../service/employee.service';
 // import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 // import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
@@ -16,7 +17,7 @@ import { CreateEmployeeFormComponent } from '../../forms/create-employee-form/cr
 })
 export class FiltersComponent {
 
-   constructor(){
+   constructor(private employeeService: EmployeeService){
 
    }
 
@@ -47,6 +48,7 @@ export class FiltersComponent {
    save(){
          // save changes of the edit form
          this.clearSelectedEmployees.emit();
+         this.isEditForm = false;
          console.log("save")
    }
 
@@ -66,8 +68,11 @@ export class FiltersComponent {
    }
 
    delete(){
-      // will execute if delete 
-      //now pass selected employee to delete
+      this.selectedEmployees.map((emp)=>{
+         if(emp.isChecked){
+           this.employeeService.deleteEmployee(emp.id);
+         }
+       })
       this.clearSelectedEmployees.emit();
       console.log("deleted")
    }
@@ -75,6 +80,7 @@ export class FiltersComponent {
    create(){
       this.selectedEmployee = null;
       this.isEditForm = true;
+      this.selectedTask = null;
       console.log(this.selectedEmployees)
    }
 

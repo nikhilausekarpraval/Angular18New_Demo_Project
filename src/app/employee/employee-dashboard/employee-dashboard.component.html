@@ -2,4 +2,5 @@
 <div>
     <app-filters (clearSelectedEmployees)="clearSelectedEmployees()" [employees]="employees" [selectedEmployees]="selectedEmployees"></app-filters>
     <app-employee-table [selectedEmployees]="selectedEmployees" [employees]="employees" (employeeSelectionChanged)="onEmployeeSelectionChanged($event)"></app-employee-table>
+    <!-- <app-assigned-tasks [task]="selectedEmployee" (savedTask)="savedTask($event)" ></app-assigned-tasks> -->
 </div>

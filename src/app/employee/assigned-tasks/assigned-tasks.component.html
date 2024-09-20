@@ -1,0 +1,38 @@
+<div class="task-dashboard">
+    <h2>Task Dashboard</h2>
+    <div class="task-card">
+        <div class="task-detail">
+            <label class="label">Task ID:</label>
+            <input type="text" [(ngModel)]="currentTask.id" class="value" readonly />
+        </div>
+        <div class="task-detail">
+            <label class="label">Name:</label>
+            <input type="text" [(ngModel)]="currentTask.name" class="value" />
+        </div>
+        <div class="task-detail">
+            <label class="label">Status:</label>
+            <input type="text" [(ngModel)]="currentTask.status" class="value" />
+        </div>
+        <div class="task-detail">
+            <label class="label">Description:</label>
+            <input type="text" [(ngModel)]="currentTask.description" class="value" />
+        </div>
+        <div class="task-detail">
+            <label class="label">Assigned On:</label>
+            <input type="date" [(ngModel)]="currentTask.assignedOnDt" class="value" />
+        </div>
+        <div class="task-detail">
+            <label class="label">End Date:</label>
+            <input type="date" [(ngModel)]="currentTask.endDate" class="value" />
+        </div>
+        <div class="task-detail">
+            <label class="label">Created On:</label>
+            <input type="text" [(ngModel)]="currentTask.createdOnDt" class="value" readonly />
+        </div>
+        <div class="task-detail">
+            <label class="label">Created By:</label>
+            <input type="text" [(ngModel)]="currentTask.createdBy" class="value" readonly />
+        </div>
+    </div>
+    <button (click)="saveTask()" class="btn btn-primary">Save</button>
+</div>

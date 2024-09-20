@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, Output, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
-import { ITask } from '../../Interfaces/interfaces';
+import { IEmployee, ITask, ITaskDto } from '../../Interfaces/interfaces';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { TaskService } from '../../service/task.service';
+import { EmployeeService } from '../../service/employee.service';
 
 @Component({
   selector: 'app-create-task-form',
@@ -13,7 +15,7 @@ import { CommonModule } from '@angular/common';
 })
 export class CreateTaskFormComponent {
 
-  constructor(private modalService: BsModalService) {
+  constructor(private modalService: BsModalService,private taskService: TaskService,private employeeService:EmployeeService) {
 
   }
 
@@ -23,18 +25,25 @@ export class CreateTaskFormComponent {
   @Input() task:ITask | null = null;
   @ViewChild('taskEditForm') taskEditForm!: TemplateRef<void>;
   modalRef?: BsModalRef;
-  updatedTask:ITask  =  { id: null, name: '', endDate: null, description: '', assignedOnDt: null, createdOnDt:null,createdBy:""};
+  updatedTask:ITask =  { id: null, name: '', status:'',employees:[], endDate: null, description: '', assignedOnDt: null, createdOnDt:null,createdBy:""};
   formOperation:String = "Edit";
+  employeeList:IEmployee[] = []
+  selectedEmployeeId: number = 0;
 
 
   ngOnChanges(changes: SimpleChanges) {
-
+    this.getEmployees()
     if (changes['isEditForm'] && this.isEditForm) {
         this.formOperation = this.task ? "Edit" : "Create";
         this.updatedTask = Object.assign({},this.task ? this.task : this.updatedTask);
         this.openModal(); 
 
     }
+  }
+
+ async getEmployees(){
+  let employeesData = await this.employeeService.getEmployees() as any
+    this.employeeList = employeesData.data.employees;
   }
 
    config: ModalOptions = {
@@ -59,6 +68,16 @@ export class CreateTaskFormComponent {
   }
 
   handleFormSubmit(event:any){
+      let newTask = { 
+        ...this.updatedTask, 
+        employeeId: this.selectedEmployeeId // Assign employeeId from the first employee
+      } as any;
+      if(this.formOperation =="Edit"){
+        
+        this.taskService.updateTask(this.updatedTask.id as number,newTask)
+      }else {
+        this.taskService.createTask(newTask)
+      }
       this.save.emit();
       this.modalRef?.hide();
   }

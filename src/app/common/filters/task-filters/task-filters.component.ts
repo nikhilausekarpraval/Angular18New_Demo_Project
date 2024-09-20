@@ -3,6 +3,7 @@ import { ITask } from '../../../Interfaces/interfaces';
 import { CreateTaskFormComponent } from '../../../forms/create-task-form/create-task-form.component';
 import { ConfirmPopupComponent } from '../../confirm-popup/confirm-popup.component';
 import { CommonModule } from '@angular/common';
+import { TaskService } from '../../../service/task.service';
 
 @Component({
   selector: 'app-task-filters',
@@ -13,7 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 export class TaskFiltersComponent {
 
-  constructor() { }
+  constructor(private taskService:TaskService) { }
 
   search(){
 
@@ -62,6 +63,12 @@ export class TaskFiltersComponent {
   delete(){
      // will execute if delete 
      //now pass selected employee to delete
+     this.selectedTasks.map((task)=>{
+       if(task.isChecked){
+         this.taskService.deleteTask(task.id);
+       }
+     })
+     
      this.clearSelectedTasks.emit();
      console.log("deleted")
   }

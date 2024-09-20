@@ -3,6 +3,7 @@ import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { IEmployee } from '../../Interfaces/interfaces';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { EmployeeService } from '../../service/employee.service';
 
 @Component({
   selector: 'app-create-employee-form',
@@ -13,7 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 export class CreateEmployeeFormComponent {
 
-  constructor(private modalService: BsModalService) {
+  constructor(private modalService: BsModalService,private employeeService : EmployeeService) {
 
   }
 
@@ -23,7 +24,7 @@ export class CreateEmployeeFormComponent {
   @Input() employee:IEmployee | null = null;
   @ViewChild('employeeEditForm') employeeEditForm!: TemplateRef<void>;
   modalRef?: BsModalRef;
-  updatedEmployee:IEmployee  =  { id: null, name: '', email: '', mobileNo: '', designation: '', position:"",createdBy:"",createdOnDt:new Date()};
+  updatedEmployee:IEmployee  =  { id: null, name: '', email: '',tasks:[], mobileNo: '', designation: '', position:"",createdBy:"",createdOnDt:new Date()};
   formOperation:String = "Edit";
 
 
@@ -59,8 +60,15 @@ export class CreateEmployeeFormComponent {
   }
 
   handleFormSubmit(event:any){
+    console.log(this.formOperation,this.updatedEmployee)
+    if(this.formOperation =="Edit"){
+      this.employeeService.updateEmployee(this.updatedEmployee.id as number,this.updatedEmployee)
+    }else {
+      this.employeeService.createEmployee(this.updatedEmployee)
+    }
       this.save.emit();
       this.modalRef?.hide();
   }
 
+  
 }
