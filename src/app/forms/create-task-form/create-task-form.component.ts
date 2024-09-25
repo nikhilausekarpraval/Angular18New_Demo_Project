@@ -68,7 +68,7 @@ export class CreateTaskFormComponent {
   }
 
   onEmployeeSelect(value:any){
-    this.selectedEmployeeId = value;
+    this.selectedEmployeeId = value.value;
   }
 
   handleFormSubmit(event:any){
