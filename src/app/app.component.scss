@@ -1,0 +1,57 @@
+.current-user{
+    width: 250px;
+    border-radius: 8px;
+}
+
+    .user-name {
+        font-size: 13px;
+        font-weight: 700;
+        color: #4c5656;
+        font: poppins;
+    }
+
+    .user-position {
+        color: #9f9f9f;
+        font-size: 11px;
+    }
+
+    .user-image-style {
+        width: 32px;
+        height: auto;
+    }
+
+    .logout-button-style {
+        position: absolute;
+        top: 62%;
+        right: 2%;
+        border: 1px solid rgb(209, 207, 207);
+    }
+
+    .user-initials {
+        font-size: 20px;
+        font-weight: 500;
+        background: var(--apex-primary);
+        color: white;
+        min-height: 44px;
+    }
+
+.property-right-navs {
+    color: white !important;
+    margin: 0px 10px;
+}
+
+.digital-logo {
+    vertical-align: top;
+}
+
+.user-image {
+    vertical-align: sub;
+}
+
+button:focus {
+    outline: none;
+}
+
+.current-user {
+    vertical-align: text-top;
+}
