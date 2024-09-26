@@ -13,15 +13,12 @@ export class EmployeeService {
     // private baseUrl: string = 'http://localhost:5003/core-gateway/employee';//oceloat-gateway : core
     //private baseUrl: string = 'http://localhost:8585/mydotnetcoreapp/employee';//spring-cloud-gateway : core-application
 
-    private baseUrl: string = 'http://localhost:8585/spring-application/employee';//spring-cloud-gateway : spring-application
+    private baseUrl: string = 'http://localhost:8585/spring-gateway/employee';//spring-cloud-gateway : spring-application
 
     // Get all employees
    async getEmployees(): Promise<AxiosResponse<IEmployee[]>> {
         return await axios.get<IEmployee[]>(`${this.baseUrl}/get`, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            withCredentials: false  
+            headers: {'Content-Type': 'application/json',},withCredentials: false  
         });
     }
 

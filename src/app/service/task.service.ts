@@ -13,7 +13,7 @@ export class TaskService {
     // private baseUrl: string = 'http://localhost:5003/core-gateway/task';//oceloat-gateway : core
     //private baseUrl: string = 'http://localhost:8585/mydotnetcoreapp/task';//spring-cloud-gateway : core-application
 
-    private baseUrl: string = 'http://localhost:8585/spring-application/task';//spring-cloud-gateway : spring-application
+    private baseUrl: string = 'http://localhost:8585/spring-gateway/task';//spring-cloud-gateway : spring-application
 
     // Get all tasks
     getTasks(): Promise<AxiosResponse<ITask[]>> {
