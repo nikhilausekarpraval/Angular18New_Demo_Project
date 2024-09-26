@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TaskService } from '../../service/task.service';
 import { EmployeeService } from '../../service/employee.service';
+import { task } from '../../Constants/Constatns';
 
 @Component({
   selector: 'app-create-task-form',
@@ -25,7 +26,7 @@ export class CreateTaskFormComponent {
   @Input() task:ITask | null = null;
   @ViewChild('taskEditForm') taskEditForm!: TemplateRef<void>;
   modalRef?: BsModalRef;
-  updatedTask:ITask =  { id: null, name: '', status:'',employees:[], endDate: null, description: '', assignedOnDt: null, createdOnDt:null,createdBy:""};
+  updatedTask:ITask =  task
   formOperation:String = "Edit";
   employeeList:IEmployee[] = []
   selectedEmployeeId: number = 0;
@@ -35,7 +36,7 @@ export class CreateTaskFormComponent {
     this.getEmployees()
     if (changes['isEditForm'] && this.isEditForm) {
         this.formOperation = this.task ? "Edit" : "Create";
-        this.updatedTask = Object.assign({},this.task ? this.task : this.updatedTask);
+        this.updatedTask = Object.assign({},this.task ? this.task : {...task});
         this.openModal(); 
 
     }

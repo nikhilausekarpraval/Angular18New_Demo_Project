@@ -4,6 +4,7 @@ import { IEmployee } from '../../Interfaces/interfaces';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { EmployeeService } from '../../service/employee.service';
+import { employee } from '../../Constants/Constatns';
 
 @Component({
   selector: 'app-create-employee-form',
@@ -24,17 +25,21 @@ export class CreateEmployeeFormComponent {
   @Input() employee:IEmployee | null = null;
   @ViewChild('employeeEditForm') employeeEditForm!: TemplateRef<void>;
   modalRef?: BsModalRef;
-  updatedEmployee:IEmployee  =  { id: null, name: '', email: '',tasks:[], mobileNo: '', designation: '', position:"",createdBy:"",createdOnDt:new Date()};
+  updatedEmployee:IEmployee  =  employee;
   formOperation:String = "Edit";
 
 
   ngOnChanges(changes: SimpleChanges) {
 
     if (changes['isEditForm'] && this.isEditForm) {
-       this.formOperation = this.employee ? "Edit" : "Create";
-        this.updatedEmployee = Object.assign({},this.employee ? this.employee : this.updatedEmployee);
+        this.formOperation = this.employee ? "Edit" : "Create";
+        if(this.employee){
+          this.updatedEmployee = {...this.employee}
+        }else {
+          this.updatedEmployee = {...employee}
+        }
         this.openModal(); 
-
+        console.log(this.employee,this.updatedEmployee)
     }
   }
 
