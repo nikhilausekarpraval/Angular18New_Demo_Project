@@ -7,7 +7,14 @@ import { Injectable } from '@angular/core';
 })
 
 export class EmployeeService {
-    private baseUrl: string = 'http://localhost:8080/api/employee';
+    // private baseUrl: string = 'http://localhost:8080/employee'// spring end point
+    // private baseUrl: string = 'http://localhost:9091/employee'// core end point
+    // private baseUrl: string = 'http://localhost:5003/gateway/employee';//oceloat-gateway : spring
+    // private baseUrl: string = 'http://localhost:5003/core-gateway/employee';//oceloat-gateway : core
+
+    private baseUrl: string = 'http://localhost:8585/spring-application/employee';//spring-cloud-gateway : spring-application
+
+   // private baseUrl: string = 'http://localhost:8585/mydotnetcoreapp/employee';//spring-cloud-gateway : core-application
 
     // Get all employees
     getEmployees(): Promise<AxiosResponse<IEmployee[]>> {

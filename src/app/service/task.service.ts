@@ -6,7 +6,15 @@ import { Injectable } from '@angular/core';
   providedIn: 'root' // This makes the service available globally (recommended)
 })
 export class TaskService {
-    private baseUrl: string = 'http://localhost:8080/api/task';
+
+    // private baseUrl: string = 'http://localhost:8080/task'// spring end point
+    // private baseUrl: string = 'http://localhost:9091/task'// core end point
+    // private baseUrl: string = 'http://localhost:5003/gateway/task';//oceloat-gateway : spring
+    // private baseUrl: string = 'http://localhost:5003/core-gateway/task';//oceloat-gateway : core
+
+    private baseUrl: string = 'http://localhost:8585/spring-application/task';//spring-cloud-gateway : spring-application
+
+    //private baseUrl: string = 'http://localhost:8585/mydotnetcoreapp/task';//spring-cloud-gateway : core-application
 
     // Get all tasks
     getTasks(): Promise<AxiosResponse<ITask[]>> {

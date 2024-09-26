@@ -25,14 +25,14 @@
             <label class="label">End Date:</label>
             <input type="date" [(ngModel)]="currentTask.endDate" class="value"  readonly disabled/>
         </div>
-        <div class="task-detail">
+        <!-- <div class="task-detail">
             <label class="label">Created On:</label> 
             <input type="text" [(ngModel)]="currentTask.createdOnDt" class="value" readonly  disabled/>
         </div>
         <div class="task-detail">
             <label class="label">Created By:</label>
             <input type="text" [(ngModel)]="currentTask.createdBy" class="value" readonly   disabled/>
-        </div>
+        </div> -->
     </div>
     <div class="d-flex justify-content-end pe-4 pt-3">
         <button (click)="saveTask()" class="btn btn-primary">Save</button>
