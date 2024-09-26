@@ -11,33 +11,37 @@ export class EmployeeService {
     // private baseUrl: string = 'http://localhost:9091/employee'// core end point
     // private baseUrl: string = 'http://localhost:5003/gateway/employee';//oceloat-gateway : spring
     // private baseUrl: string = 'http://localhost:5003/core-gateway/employee';//oceloat-gateway : core
+    //private baseUrl: string = 'http://localhost:8585/mydotnetcoreapp/employee';//spring-cloud-gateway : core-application
 
     private baseUrl: string = 'http://localhost:8585/spring-application/employee';//spring-cloud-gateway : spring-application
 
-   // private baseUrl: string = 'http://localhost:8585/mydotnetcoreapp/employee';//spring-cloud-gateway : core-application
-
     // Get all employees
-    getEmployees(): Promise<AxiosResponse<IEmployee[]>> {
-        return axios.get<IEmployee[]>(`${this.baseUrl}/get`);
+   async getEmployees(): Promise<AxiosResponse<IEmployee[]>> {
+        return await axios.get<IEmployee[]>(`${this.baseUrl}/get`, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            withCredentials: false  
+        });
     }
 
     // Get a single employee by ID
-    getEmployeeById(id: number): Promise<AxiosResponse<IEmployee>> {
-        return axios.get<IEmployee>(`${this.baseUrl}?id=${id}`);
+   async getEmployeeById(id: number): Promise<AxiosResponse<IEmployee>> {
+        return await axios.get<IEmployee>(`${this.baseUrl}?id=${id}`);
     }
 
     // Create a new employee
-    createEmployee(employeeDto: IEmployeeDto): Promise<AxiosResponse<IEmployeeDto>> {
-        return axios.post<IEmployeeDto>(`${this.baseUrl}/register`, employeeDto);
+  async  createEmployee(employeeDto: IEmployeeDto): Promise<AxiosResponse<IEmployeeDto>> {
+        return await axios.post<IEmployeeDto>(`${this.baseUrl}/register`, employeeDto);
     }
 
     // Update an existing employee
-    updateEmployee(id: number, employeeDto: IEmployeeDto): Promise<AxiosResponse<IEmployeeDto>> {
-        return axios.put<IEmployeeDto>(`${this.baseUrl}/update`, employeeDto);
+    async updateEmployee(id: number, employeeDto: IEmployeeDto): Promise<AxiosResponse<IEmployeeDto>> {
+        return await axios.put<IEmployeeDto>(`${this.baseUrl}/update`, employeeDto);
     }
 
     // Delete an employee by ID
-    deleteEmployee(id: number): Promise<AxiosResponse<void>> {
-        return axios.delete<void>(`${this.baseUrl}/delete?id=${id}`);
+  async  deleteEmployee(id: number): Promise<AxiosResponse<void>> {
+        return await axios.delete<void>(`${this.baseUrl}/delete?employeeId=${id}`);
     }
 }

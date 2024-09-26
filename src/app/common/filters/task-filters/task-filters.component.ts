@@ -42,6 +42,7 @@ export class TaskFiltersComponent {
   save(){
         // save changes of the edit form
         this.clearSelectedTasks.emit();
+        this.isEditForm = false;
         console.log("save")
   }
 

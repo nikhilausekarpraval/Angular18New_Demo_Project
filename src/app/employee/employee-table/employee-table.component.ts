@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component,Input,EventEmitter, Output, SimpleChanges } from '@angular/core';
+import { Component,Input,EventEmitter, Output, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { IEmployee } from '../../Interfaces/interfaces';
 import { EMPLOYEE_TABLE_HEADERS } from '../../Constants/Constatns';
 
@@ -14,7 +14,7 @@ import { EMPLOYEE_TABLE_HEADERS } from '../../Constants/Constatns';
 
 export class EmployeeTableComponent {
 
-  constructor(){
+  constructor(private changeDetector: ChangeDetectorRef){
 
   }
 
@@ -44,6 +44,8 @@ export class EmployeeTableComponent {
       this.pageCount = Math.ceil(this.employees.length / this.pageSize); // Calculate total pages
       console.log(this.pageCount+"page count",this.employees.length,this.pageSize)
     }
+
+    this.changeDetector.detectChanges();
   }
 
   getPaginatedEmployees() {

@@ -29,10 +29,15 @@ export class EmployeeDashboardComponent {
     this.getEmployees();
   }
 
- async getEmployees (){
+  async getEmployees (){
+    await new Promise(resolve => setTimeout(resolve, 100));
     let object = await this.employeeService.getEmployees() as any
-    console.log(object)
-    this.employees = object.data.employees;
+    console.log(object,"Fetch data called ")
+    if(object.data.employees){
+      this.employees = object.data.employees;
+    }else {
+      this.employees = object.data;
+    } 
   }
 
    selectedEmployees: { id: number, isChecked: boolean }[] = [];
@@ -74,10 +79,11 @@ export class EmployeeDashboardComponent {
     }
   }
 
-  clearSelectedEmployees(){
+  clearSelectedEmployees (){
+    this.getEmployees();
     this.selectedEmployees = []
     console.log("clear selected called")
-    this.getEmployees();
+   
   }
 
   savedTask(updatedTask: ITaskDto) {

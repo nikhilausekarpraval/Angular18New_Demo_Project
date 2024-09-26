@@ -11,10 +11,9 @@ export class TaskService {
     // private baseUrl: string = 'http://localhost:9091/task'// core end point
     // private baseUrl: string = 'http://localhost:5003/gateway/task';//oceloat-gateway : spring
     // private baseUrl: string = 'http://localhost:5003/core-gateway/task';//oceloat-gateway : core
+    //private baseUrl: string = 'http://localhost:8585/mydotnetcoreapp/task';//spring-cloud-gateway : core-application
 
     private baseUrl: string = 'http://localhost:8585/spring-application/task';//spring-cloud-gateway : spring-application
-
-    //private baseUrl: string = 'http://localhost:8585/mydotnetcoreapp/task';//spring-cloud-gateway : core-application
 
     // Get all tasks
     getTasks(): Promise<AxiosResponse<ITask[]>> {
@@ -38,6 +37,6 @@ export class TaskService {
 
     // Delete a task by ID
     deleteTask(id: number): Promise<AxiosResponse<void>> {
-        return axios.delete<void>(`${this.baseUrl}/delete?id=${id}`);
+        return axios.delete<void>(`${this.baseUrl}/delete?taskId=${id}`);
     }
 }

@@ -24,8 +24,13 @@ export class TaskDashboardComponent {
   }
 
   async getTasks(){
-  let object = await this.taskService.getTasks() as any
-    this.tasks = object.data.tasks;
+    await new Promise(resolve => setTimeout(resolve, 100));
+    let object = await this.taskService.getTasks() as any
+    if(object.data.tasks){
+      this.tasks = object.data.tasks;
+    }else {
+      this.tasks = object.data;
+    }
   }
 
   // Method to handle employee selection changes
@@ -44,10 +49,10 @@ export class TaskDashboardComponent {
     console.log("changed")
   }
 
-  clearSelectedTasks(){
+ async clearSelectedTasks(){
     this.selectedTasks = []
     console.log("clear selected called")
-    this.getTasks();
+    await this.getTasks();
   }
 
    // Array of 5 task objects
