@@ -33,11 +33,13 @@ export class CreateTaskFormComponent {
 
 
   ngOnChanges(changes: SimpleChanges) {
+    debugger;
     this.getEmployees()
     if (changes['isEditForm'] && this.isEditForm) {
-        this.selectedEmployeeId = this.task.employeeId
+        this.selectedEmployeeId = this?.task?.employeeId
         this.formOperation = this.task ? "Edit" : "Create";
-        this.updatedTask = Object.assign({},this.task ? this.task : {...task});
+        const constTask = {...task} as any;
+        this.updatedTask = Object.assign({},this.task ? this.task : constTask.id = 0);
         this.openModal(); 
     }
   }

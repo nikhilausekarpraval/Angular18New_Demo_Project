@@ -37,6 +37,7 @@ export class CreateEmployeeFormComponent {
           this.updatedEmployee = {...this.employee}
         }else {
           this.updatedEmployee = {...employee}
+          this.updatedEmployee.id = 0;
         }
         this.openModal(); 
         console.log(this.employee,this.updatedEmployee)

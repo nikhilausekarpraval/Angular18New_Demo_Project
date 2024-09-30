@@ -9,9 +9,9 @@ export class TaskService {
 
     // private baseUrl: string = 'http://localhost:8080/task'// spring end point
     //private baseUrl: string = 'http://localhost:9091/task'// core end point
-      private baseUrl: string = 'https://localhost:5003/gateway/task';//oceloat-gateway : spring
+     // private baseUrl: string = 'https://localhost:5003/gateway/task';//oceloat-gateway : spring
      //private baseUrl: string = 'https://localhost:5003/core-gateway/task';//oceloat-gateway : core
-    //private baseUrl: string = 'http://localhost:8585/core-gateway/task';//spring-cloud-gateway : core-application
+    private baseUrl: string = 'http://localhost:8585/core-gateway/task';//spring-cloud-gateway : core-application
 
     //private baseUrl: string = 'http://localhost:8585/spring-gateway/task';//spring-cloud-gateway : spring-application
 
