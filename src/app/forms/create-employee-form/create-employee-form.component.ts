@@ -64,12 +64,12 @@ export class CreateEmployeeFormComponent {
       this.clearForm.emit();
   }
 
-  handleFormSubmit(event:any){
-    console.log(this.formOperation,this.updatedEmployee)
+  async handleFormSubmit(event:any){
+
     if(this.formOperation =="Edit"){
-      this.employeeService.updateEmployee(this.updatedEmployee.id as number,this.updatedEmployee)
+      await this.employeeService.updateEmployee(this.updatedEmployee.id as number,this.updatedEmployee)
     }else {
-      this.employeeService.createEmployee(this.updatedEmployee)
+      await this.employeeService.createEmployee(this.updatedEmployee)
     }
       this.save.emit();
       this.modalRef?.hide();

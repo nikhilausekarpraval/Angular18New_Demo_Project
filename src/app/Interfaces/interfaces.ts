@@ -19,7 +19,7 @@ export interface ITask{
         endDate:Date | null;
         createdOnDt : Date | null;
         createdBy:string;
-        employees:IEmployeeDto[];
+        employeeId:number| any;
 }   
 
 
@@ -36,7 +36,7 @@ export interface IEmployeeDto{
 
 export interface ITaskDto{
       id:number | null;
-      employeeId:number;
+      employeeId:number | any;
       name:string;
       description:string;
       assignedOnDt:Date | null;

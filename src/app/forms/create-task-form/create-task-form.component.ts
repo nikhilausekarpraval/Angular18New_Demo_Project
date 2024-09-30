@@ -23,7 +23,7 @@ export class CreateTaskFormComponent {
   @Output() save = new EventEmitter();
   @Output() clearForm = new EventEmitter();
   @Input() isEditForm: boolean = false;
-  @Input() task:ITask | null = null;
+  @Input() task:ITask | null | any= null;
   @ViewChild('taskEditForm') taskEditForm!: TemplateRef<void>;
   modalRef?: BsModalRef;
   updatedTask:ITask =  task
@@ -35,16 +35,20 @@ export class CreateTaskFormComponent {
   ngOnChanges(changes: SimpleChanges) {
     this.getEmployees()
     if (changes['isEditForm'] && this.isEditForm) {
+        this.selectedEmployeeId = this.task.employeeId
         this.formOperation = this.task ? "Edit" : "Create";
         this.updatedTask = Object.assign({},this.task ? this.task : {...task});
         this.openModal(); 
-
     }
   }
 
  async getEmployees(){
-  let employeesData = await this.employeeService.getEmployees() as any
-    this.employeeList = employeesData.data.employees;
+    let object = await this.employeeService.getEmployees() as any
+    if(object.data.employees){
+      this.employeeList = object.data.employees;
+    }else {
+      this.employeeList = object.data;
+    } 
   }
 
    config: ModalOptions = {
@@ -72,7 +76,7 @@ export class CreateTaskFormComponent {
     this.selectedEmployeeId = value.value;
   }
 
-  handleFormSubmit(event:any){
+ async handleFormSubmit(event:any){
       console.log(this.updatedTask);
       let { employee, ...rest } = this.updatedTask  as any; // Destructure to exclude the 'employees' field
 
@@ -82,9 +86,9 @@ export class CreateTaskFormComponent {
       } as any;
       if(this.formOperation =="Edit"){
         
-        this.taskService.updateTask(this.updatedTask.id as number,newTask)
+        await this.taskService.updateTask(this.updatedTask.id as number,newTask)
       }else {
-        this.taskService.createTask(newTask)
+        await this.taskService.createTask(newTask)
       }
       this.save.emit();
       this.modalRef?.hide();

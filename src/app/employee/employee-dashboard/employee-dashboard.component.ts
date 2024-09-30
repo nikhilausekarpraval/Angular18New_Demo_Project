@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './employee-dashboard.component.html',
   styleUrl: './employee-dashboard.component.scss'
 })
+
 export class EmployeeDashboardComponent {
 
   constructor(private employeeService: EmployeeService,private taskService : TaskService){
@@ -30,7 +31,6 @@ export class EmployeeDashboardComponent {
   }
 
   async getEmployees (){
-    await new Promise(resolve => setTimeout(resolve, 100));
     let object = await this.employeeService.getEmployees() as any
     console.log(object,"Fetch data called ")
     if(object.data.employees){

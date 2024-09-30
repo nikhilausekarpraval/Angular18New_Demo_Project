@@ -24,7 +24,7 @@ export class TaskDashboardComponent {
   }
 
   async getTasks(){
-    await new Promise(resolve => setTimeout(resolve, 100));
+
     let object = await this.taskService.getTasks() as any
     if(object.data.tasks){
       this.tasks = object.data.tasks;

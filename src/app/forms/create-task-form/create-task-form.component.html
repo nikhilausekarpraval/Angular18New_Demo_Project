@@ -63,7 +63,7 @@
                   class="form-label label-styles py-2 m-0"
                   >Assigned To</label
                 >
-                <select class="form-select form-input-style py-2" (change)="onEmployeeSelect($event.target)">
+                <select class="form-select form-input-style py-2" [(ngModel)]="selectedEmployeeId" name="selectComponet"   (change)="onEmployeeSelect($event.target)">
                   <option *ngFor="let employee of employeeList" [value]="employee?.id">{{ employee.name }}</option>
                 </select>
               </div>
