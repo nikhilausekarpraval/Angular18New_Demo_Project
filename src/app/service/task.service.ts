@@ -8,17 +8,27 @@ import { Injectable } from '@angular/core';
 export class TaskService {
 
     // private baseUrl: string = 'http://localhost:8080/task'// spring end point
-    private baseUrl: string = 'http://localhost:9091/task'// core end point
-    // private baseUrl: string = 'http://localhost:5003/gateway/task';//oceloat-gateway : spring
-    // private baseUrl: string = 'http://localhost:5003/core-gateway/task';//oceloat-gateway : core
-    //private baseUrl: string = 'http://localhost:8585/mydotnetcoreapp/task';//spring-cloud-gateway : core-application
+    //private baseUrl: string = 'http://localhost:9091/task'// core end point
+      private baseUrl: string = 'https://localhost:5003/gateway/task';//oceloat-gateway : spring
+     //private baseUrl: string = 'https://localhost:5003/core-gateway/task';//oceloat-gateway : core
+    //private baseUrl: string = 'http://localhost:8585/core-gateway/task';//spring-cloud-gateway : core-application
 
     //private baseUrl: string = 'http://localhost:8585/spring-gateway/task';//spring-cloud-gateway : spring-application
 
     // Get all tasks
-  async  getTasks(): Promise<AxiosResponse<ITask[]>> {
-     return await axios.get<ITask[]>(`${this.baseUrl}/get`);
-    }
+  // async  getTasks(): Promise<AxiosResponse<ITask[]>> {
+  //    return await axios.get<ITask[]>(`${this.baseUrl}/get`);
+  //   }
+
+    async getTasks(): Promise<AxiosResponse<ITask[]>> {
+      const options = {
+          headers: {
+              'Access-Control-Allow-Origin': 'https://localhost:4200'
+          }
+      };
+  
+      return await axios.get<ITask[]>(`${this.baseUrl}/get`, options);
+  }
 
     // Get a single task by ID
   async  getTaskById(id: number): Promise<AxiosResponse<ITask>> {
