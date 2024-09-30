@@ -61,12 +61,12 @@ export class TaskFiltersComponent {
      // execute when click on delete in filter
   }
 
-  delete(){
+ async delete(){
      // will execute if delete 
      //now pass selected employee to delete
-     this.selectedTasks.map((task)=>{
+     this.selectedTasks.map( async(task)=>{
        if(task.isChecked){
-         this.taskService.deleteTask(task.id);
+       await  this.taskService.deleteTask(task.id);
        }
      })
      

@@ -67,10 +67,10 @@ export class FiltersComponent {
       // execute when click on delete in filter
    }
 
-   delete(){
-      this.selectedEmployees.map((emp)=>{
+   async delete(){
+      this.selectedEmployees.map(async (emp)=>{
          if(emp.isChecked){
-           this.employeeService.deleteEmployee(emp.id);
+          await this.employeeService.deleteEmployee(emp.id);
          }
        })
       this.clearSelectedEmployees.emit();
