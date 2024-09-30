@@ -63,16 +63,17 @@ export class TaskFiltersComponent {
 
  async delete(){
      // will execute if delete 
-     //now pass selected employee to delete
-     this.selectedTasks.map( async(task)=>{
-       if(task.isChecked){
-       await  this.taskService.deleteTask(task.id);
-       }
-     })
+
+     for (const task of this.selectedTasks){
+         if(task.isChecked){
+            await this.taskService.deleteTask(task.id);
+         }
+     }
      
      this.clearSelectedTasks.emit();
      console.log("deleted")
   }
+
 
   create(){
      this.selectedTask = null;

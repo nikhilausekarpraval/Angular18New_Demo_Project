@@ -8,10 +8,10 @@ import { Injectable } from '@angular/core';
 
 export class EmployeeService {
     // private baseUrl: string = 'http://localhost:8080/employee'// spring end point
-     //private baseUrl: string = 'http://localhost:9091/employee'// core end point
+     private baseUrl: string = 'http://localhost:9091/employee'// core end point
      //private baseUrl: string = 'https://localhost:5003/gateway/employee';//oceloat-gateway : spring
     // private baseUrl: string = 'https://localhost:5003/core-gateway/employee';//oceloat-gateway : core
-    private baseUrl: string = 'http://localhost:8585/core-gateway/employee';//spring-cloud-gateway : core-application
+    //private baseUrl: string = 'http://localhost:8585/core-gateway/employee';//spring-cloud-gateway : core-application
     //private baseUrl: string = 'http://localhost:8585/spring-gateway/employee';//spring-cloud-gateway : spring-application
 
     // Get all employees

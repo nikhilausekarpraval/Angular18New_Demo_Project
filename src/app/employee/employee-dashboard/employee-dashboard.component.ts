@@ -80,6 +80,7 @@ export class EmployeeDashboardComponent {
   }
 
   clearSelectedEmployees (){
+    
     this.getEmployees();
     this.selectedEmployees = []
     console.log("clear selected called")
