@@ -33,7 +33,6 @@ export class CreateTaskFormComponent {
 
 
   ngOnChanges(changes: SimpleChanges) {
-    debugger;
     this.getEmployees()
     if (changes['isEditForm'] && this.isEditForm) {
         this.selectedEmployeeId = this?.task?.employeeId
