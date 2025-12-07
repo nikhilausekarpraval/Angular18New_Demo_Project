@@ -1,12 +1,16 @@
-import axios, { AxiosResponse } from 'axios';
 import { ITask, ITaskDto } from '../Interfaces/interfaces';
 import { Injectable } from '@angular/core';
+import { CommonService } from './common.service';
 
 @Injectable({
   providedIn: 'root' // This makes the service available globally (recommended)
 })
 export class TaskService {
 
+      commonService: any;
+      constructor( ) {
+          this.commonService = new CommonService()
+      }
     // private baseUrl: string = 'http://localhost:8080/task'// spring end point
     private baseUrl: string = 'http://localhost:9091/task'// core end point
      // private baseUrl: string = 'https://localhost:5003/gateway/task';//oceloat-gateway : spring
@@ -20,33 +24,38 @@ export class TaskService {
   //    return await axios.get<ITask[]>(`${this.baseUrl}/get`);
   //   }
 
-    async getTasks(): Promise<AxiosResponse<ITask[]>> {
-      const options = {
-          headers: {
-              'Access-Control-Allow-Origin': 'https://localhost:4200'
-          }
-      };
+    async getTasks(): Promise<ITask[]> {
   
-      return await axios.get<ITask[]>(`${this.baseUrl}/get`, options);
+      return  this.commonService.getAll(`${this.baseUrl}/get`).subscribe((data: ITask[]) => {
+          return data;
+      });
   }
 
     // Get a single task by ID
-  async  getTaskById(id: number): Promise<AxiosResponse<ITask>> {
-     return await axios.get<ITask>(`${this.baseUrl}?id=${id}`);
+  async  getTaskById(id: number): Promise<ITask> {
+     return  this.commonService.getSingle(`${this.baseUrl}?id=${id}`).subscribe((data: ITask) => {
+         return data;
+     });
     }
 
     // Create a new task
-  async  createTask(taskDto: ITaskDto): Promise<AxiosResponse<ITaskDto>> {
-     return await axios.post<ITaskDto>(`${this.baseUrl}/register`, taskDto);
+  async  createTask(taskDto: ITaskDto): Promise<ITaskDto> {
+     return  this.commonService.Create(`${this.baseUrl}/register`, taskDto).subscribe((data: ITaskDto) => {
+         return data;
+     });
     }
 
     // Update an existing task
-   async updateTask(id: number, taskDto: ITaskDto): Promise<AxiosResponse<ITaskDto>> {
-      return await axios.put<ITaskDto>(`${this.baseUrl}/update`, taskDto);
+   async updateTask(id: number, taskDto: ITaskDto): Promise<ITaskDto> {
+      return  this.commonService.Update(`${this.baseUrl}/update`, taskDto).subscribe((data: ITaskDto) => {
+          return data;
+      });
     }
 
     // Delete a task by ID
-    async deleteTask(id: number): Promise<AxiosResponse<void>> {
-        return await axios.delete<void>(`${this.baseUrl}/delete?taskId=${id}`);
+    async deleteTask(id: number): Promise<void> {
+        return  this.commonService.delete(`${this.baseUrl}/delete?taskId=${id}`).subscribe(() => {
+            return;
+        });
     }
 }
